@@ -1,0 +1,178 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    background-color: #000;
+}
+.header{
+    padding: 10px;
+    text-align: center;
+    font-size: 20px;
+    color: #fff;
+}
+.game{
+    padding: 20px 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #aaf;
+}
+.cards{
+    --colsNum: 0;
+    --rowsNum: 0;
+    display: grid;
+    gap: 10px;
+    grid-template-columns: repeat(var(--colsNum), 100px);
+    grid-template-rows: repeat(var(--rowsNum), 150px);
+}
+.card{
+    height: 150px;
+    width: 100px;
+    border-radius: 10px;
+    perspective: 500px;
+    cursor: pointer;
+}
+.card > div{
+    transition: .5s;
+    position: relative;
+    transform-style: preserve-3d;
+    height: 100%;
+    width: 100%;
+}
+.back{
+    transform: rotateY(180deg);
+    background-color: red;
+}
+.back img{
+    width: 100%;
+    height: 100%;
+    margin: auto;
+    user-select: none;
+}
+.front{
+    background-color: blue;
+}
+.card > div > div{
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    backface-visibility: hidden;
+    border-radius: 15px;
+    overflow: hidden;
+}
+.card.active, .card.actived{
+    cursor: default;
+}
+.card.active > div, .card.actived > div{
+    transform: rotateY(180deg);
+}
+/* popup component */
+    .popup{
+        position: fixed;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: 40%;
+        height: 250px;
+        z-index: 999;
+    }
+    .popup::after{
+        content: "";
+        position: fixed;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+        height: 100%;
+        border-radius: 50px;
+        z-index: -1;
+        background-color: #ccc;
+        border: 4px solid #999;
+    }
+    .popup.popup-shadow::before{
+        content: "";
+        position: fixed;
+        width: 300vw;
+        height: 300vh;
+        top: -100vh;
+        left: -100vw;
+        background-color: #000;
+        opacity: .3;
+        z-index: -2;
+        display: none;
+    }
+    /* additional properties */
+        /* 1 popup shadow */
+            .popup.popup-shadow::before{
+                display: block; 
+            }
+        /* 2 colors */
+            /* red */
+            .popup.popup-red::after{
+                background-color: #e44;
+                border-color: #a22;
+            }
+            .popup.popup-red::before{
+                background-color: #e44;
+            }
+            /* blue */
+            .popup.popup-blue::after{
+                background-color: #4ae;
+                border-color: #26a;
+            }
+            .popup.popup-blue::before{
+                background-color: #4ae;
+            }
+            /* green */
+            .popup.popup-green::after{
+                background-color: #5ee;
+                border-color: #388;
+            }
+            .popup.popup-green::before{
+                background-color: #5ee;
+            }
+            /* yellow */
+            .popup.popup-yellow::after{
+                background-color: #ee5;
+                border-color: #a72;
+            }
+            .popup.popup-yellow::before{
+                background-color: #ee5;
+            }
+            /* black */
+            .popup.popup-black::after{
+                background-color: #555;
+                border-color: #000;
+            }
+            .popup.popup-black::before{
+                background-color: #000;
+                opacity: .4;
+            }
+    /* additional properties */
+/* popup component */
+.popup{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: fit-content;
+    width: fit-content;
+    padding: 20px 50px;
+}
+.popup button{
+    width: 30px;
+    height: 30px;
+    background-color: #34a;
+    border: 1px solid #228;
+    border-radius: 50px;
+    margin: 0 5px;
+    cursor: pointer;
+}
+.popup h1{
+    margin: 0 0 20px;
+}
+.popup p{
+    margin: 15px 0;
+}
